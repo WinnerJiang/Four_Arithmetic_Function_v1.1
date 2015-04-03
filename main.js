@@ -26,14 +26,14 @@ $(document).ready(function(){
 			}  //notice! cannot directly use $.addFunctionCallback(data);
 		});
 
+	});
+
+
 		$.addFunctionCallback = function(response){
 			alert("hello addFunctionCallback!");
 			alert(response);
 
 		};
-	});
-
-
 
 });
 
