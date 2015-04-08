@@ -13,7 +13,7 @@ if($operation=="add"){
 
 
 function addFunction($a,$b){
-	echo "php 16";
+	print_r($a,$b);
 	$result =0;
 	$result = $a + $b;
 	return $result;

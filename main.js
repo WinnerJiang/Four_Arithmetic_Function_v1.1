@@ -8,6 +8,8 @@ $(document).ready(function(){
 	alert("hello jQuery!");
 	var operation ="";
 	var response="";
+	var firstNumVal = "";
+	var secondNumVal ="";
 
 	//send add function para
 	$("#addButton").click(function(){
@@ -15,15 +17,18 @@ $(document).ready(function(){
 
 		//Ajax request to calculate.php
 		operation = "add";
+		//get variables
+		firstNumVal = $("#firstNum").val();
+		secondNumVal = $("#secondNum").val();
 
 		$.ajax({
 			type:"POST",
 			url:"calculate.php",
-			data:{operation:operation,firstNum:"222",secondNum:"33"},
+			data:{operation:operation,firstNum:firstNumVal,secondNum:secondNumVal},
 			dataType:"json",
 			success:function(data){
 				$.addFunctionCallback(data);
-			}  //notice! cannot directly use $.addFunctionCallback(data);
+			}  //notice! cannot directly use $.addFunctionCallback(data); y????
 		});
 
 	});
@@ -31,9 +36,13 @@ $(document).ready(function(){
 
 		$.addFunctionCallback = function(response){
 			alert("hello addFunctionCallback!");
-			alert(response);
+			//alert(response);
+			console.log(response);
+
+			//set result
+			$("#result").html(response);
+
 
 		};
-
 });
 
