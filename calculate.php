@@ -11,11 +11,21 @@ if($operation=="add"){
 	echo json_encode($Result);	
 }
 
+if($operation =="sub"){
+	$Result = subFunction($FirstNum,$SecondNum);
+	echo json_encode($Result);
+}
+
 
 function addFunction($a,$b){
-	print_r($a,$b);
+	//print_r($a,$b);
 	$result =0;
 	$result = $a + $b;
+	return $result;
+};
+
+function subFunction($a,$b){
+	$result = $a - $b;
 	return $result;
 };
 

@@ -11,30 +11,38 @@ $(document).ready(function(){
 	var firstNumVal = "";
 	var secondNumVal ="";
 
+	//get variables
+	firstNumVal = $("#firstNum").val();
+	secondNumVal = $("#secondNum").val();
 	//send add function para
 	$("#addButton").click(function(){
 		alert("hello addButton!");
-
-		//Ajax request to calculate.php
 		operation = "add";
-		//get variables
-		firstNumVal = $("#firstNum").val();
-		secondNumVal = $("#secondNum").val();
-
-		$.ajax({
-			type:"POST",
-			url:"calculate.php",
-			data:{operation:operation,firstNum:firstNumVal,secondNum:secondNumVal},
-			dataType:"json",
-			success:function(data){
-				$.addFunctionCallback(data);
-			}  //notice! cannot directly use $.addFunctionCallback(data); y????
-		});
-
+		//Ajax request to calculate.php		
+		$.callCalculateRequest(operation,firstNumVal,secondNumVal);
 	});
 
+	$("#subButton").click(function(){
+		alert("hello addButton!");
+		operation = "sub";
+		//Ajax request to calculate.php		
+		$.callCalculateRequest(operation,firstNumVal,secondNumVal);
+	});
 
-		$.addFunctionCallback = function(response){
+    
+    $.callCalculateRequest = function(oper,first,second){
+    	$.ajax({
+			type:"POST",
+			url:"calculate.php",
+			data:{operation:oper,firstNum:first,secondNum:second},
+			dataType:"json",
+			success:function(data){
+				$.FunctionCallback(data);
+			}  //notice! cannot directly use $.addFunctionCallback(data); y????
+		});
+    };
+
+	$.FunctionCallback = function(response){
 			alert("hello addFunctionCallback!");
 			//alert(response);
 			console.log(response);
@@ -43,6 +51,6 @@ $(document).ready(function(){
 			$("#result").html(response);
 
 
-		};
+	};
 });
 
