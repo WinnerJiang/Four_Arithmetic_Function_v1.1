@@ -1,4 +1,7 @@
 <?php
+session_start();
+//get user session id and record user's input of calculation
+
 
 $operation=$_POST['operation'];
 $FirstNum = $_POST['firstNum'];
