@@ -11,13 +11,14 @@ $(document).ready(function(){
 	var firstNumVal = "";
 	var secondNumVal ="";
 
-	//get variables
-	firstNumVal = $("#firstNum").val();
-	secondNumVal = $("#secondNum").val();
+
 	//send add function para
 	$("#addButton").click(function(){
 		alert("hello addButton!");
 		operation = "add";
+		//get variables
+		firstNumVal = $("#firstNum").val();
+		secondNumVal = $("#secondNum").val();
 		//Ajax request to calculate.php		
 		$.callCalculateRequest(operation,firstNumVal,secondNumVal);
 	});
@@ -25,6 +26,9 @@ $(document).ready(function(){
 	$("#subButton").click(function(){
 		alert("hello addButton!");
 		operation = "sub";
+		//get variables
+		firstNumVal = $("#firstNum").val();
+		secondNumVal = $("#secondNum").val();
 		//Ajax request to calculate.php		
 		$.callCalculateRequest(operation,firstNumVal,secondNumVal);
 	});
@@ -48,8 +52,8 @@ $(document).ready(function(){
 			console.log(response);
 
 			//set result
-			$("#result").html(response);
-
+			$("#result").html(response.result);
+			$("#record").html(response.sessionid);
 
 	};
 });
