@@ -2,9 +2,13 @@
 session_start();
 setcookie("user");
 $sessionid=session_id();
-//eval $sessionid;
+
 
 //get user session id and record user's input of calculation
+//file named by sessionId
+$fileExtensionType = ".txt";
+$recordFileName = $sessionid.$fileExtensionType;
+$recordFile =fopen($recordFileName, "w");
 
 
 $operation=$_POST['operation'];
@@ -14,6 +18,7 @@ $Result = 0;
 
 if($operation=="add"){
 	$Result = addFunction($FirstNum,$SecondNum);
+	//var_dump($sessionid);
 	$response = array('result' => $Result,
 					  'sessionid'=>$sessionid );
 //	eval($response);
