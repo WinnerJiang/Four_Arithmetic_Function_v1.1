@@ -6,10 +6,10 @@ $sessionid=session_id();
 
 //get user session id and record user's input of calculation
 //file named by sessionId
-$fileExtensionType = ".txt";
-$recordFileName = $sessionid.$fileExtensionType;
-$recordFile =fopen($recordFileName, "w");
-
+//$fileExtensionType = ".txt";
+//$recordFileName = $sessionid.$fileExtensionType;
+//$recordFile =fopen($recordFileName, "w");
+$_SESSION['calculatRecord']="";
 
 $operation=$_POST['operation'];
 $FirstNum = $_POST['firstNum'];
