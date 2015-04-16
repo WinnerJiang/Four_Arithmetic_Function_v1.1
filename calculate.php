@@ -1,6 +1,6 @@
 <?php
 session_start();
-setcookie("user");
+setcookie('name','PHPSESSID',time()+300);
 
 $sessionid=session_id();
 write('6===='.$sessionid);
@@ -12,8 +12,8 @@ write('6===='.$sessionid);
 //$fileExtensionType = ".txt";
 //$recordFileName = $sessionid.$fileExtensionType;
 //$recordFile =fopen($recordFileName, "w");
-$_SESSION['calculatRecord']="111";
-write('16===='.$_SESSION['calculatRecord']);
+//
+// $_SESSION['calculatRecord']="";
 $operation=$_POST['operation'];
 $FirstNum = $_POST['firstNum'];
 $SecondNum = $_POST['secondNum'];
@@ -22,10 +22,15 @@ $Result = 0;
 if($operation=="add"){
 	$Result = addFunction($FirstNum,$SecondNum);
 	//var_dump($sessionid);
+	write('25===='.$_SESSION['calculatRecord']);
+	$recordCal = $FirstNum.'+'.$SecondNum.'='.$Result."\r\n";
+	write('27===='.$recordCal);
 	$response = array('result' => $Result,
-					  'sessionid'=>$sessionid );
+					  'record'=> $_SESSION['calculatRecord'].$recordCal);
 //	eval($response);
 	echo json_encode($response);	
+	$_SESSION['calculatRecord']= $_SESSION['calculatRecord'].$recordCal;
+	write('29===='.$_SESSION['calculatRecord']);
 }
 
 if($operation =="sub"){

@@ -53,7 +53,7 @@ $(document).ready(function(){
 
 			//set result
 			$("#result").html(response.result);
-			$("#record").html(response.sessionid);
+			$("#record").html(response.record);
 
 	};
 });
