@@ -24,11 +24,33 @@ $(document).ready(function(){
 	});
 
 	$("#subButton").click(function(){
-		alert("hello addButton!");
+		alert("hello subButton!");
 		operation = "sub";
 		//get variables
 		firstNumVal = $("#firstNum").val();
 		secondNumVal = $("#secondNum").val();
+		//Ajax request to calculate.php		
+		$.callCalculateRequest(operation,firstNumVal,secondNumVal);
+	});
+
+	$("#multiButton").click(function(){
+		alert("hello multiButton!");
+		operation = "multi";
+		//get variables
+		firstNumVal = $("#firstNum").val();
+		secondNumVal = $("#secondNum").val();
+		//Ajax request to calculate.php		
+		$.callCalculateRequest(operation,firstNumVal,secondNumVal);
+	});
+
+	$("#divButton").click(function(){
+		alert("hello divButton!");
+		operation = "div";
+		//get variables
+		firstNumVal = $("#firstNum").val();
+		secondNumVal = $("#secondNum").val();
+		if(secondNumVal==0)	
+			$("#errorForSecond").html("Zero cannot be divisor!");
 		//Ajax request to calculate.php		
 		$.callCalculateRequest(operation,firstNumVal,secondNumVal);
 	});
@@ -47,10 +69,9 @@ $(document).ready(function(){
     };
 
 	$.FunctionCallback = function(response){
-			alert("hello addFunctionCallback!");
+			alert("hello FunctionCallback!");
 			//alert(response);
 			console.log(response);
-
 			//set result
 			$("#result").html(response.result);
 			$("#record").html(response.record);

@@ -21,35 +21,64 @@ $Result = 0;
 
 if($operation=="add"){
 	$Result = addFunction($FirstNum,$SecondNum);
-	//var_dump($sessionid);
-	write('25===='.$_SESSION['calculatRecord']);
 	$recordCal = $FirstNum.'+'.$SecondNum.'='.$Result."\r\n";
-	write('27===='.$recordCal);
+	$_SESSION['calculatRecord']=$_SESSION['calculatRecord'].$recordCal;
 	$response = array('result' => $Result,
-					  'record'=> $_SESSION['calculatRecord'].$recordCal);
-//	eval($response);
+					  'record'=> $_SESSION['calculatRecord']);
 	echo json_encode($response);	
-	$_SESSION['calculatRecord']= $_SESSION['calculatRecord'].$recordCal;
-	write('29===='.$_SESSION['calculatRecord']);
 }
 
 if($operation =="sub"){
 	$Result = subFunction($FirstNum,$SecondNum);
-	echo json_encode($Result);
+	$recordCal = $FirstNum.'-'.$SecondNum.'='.$Result."\r\n";
+	$_SESSION['calculatRecord']=$_SESSION['calculatRecord'].$recordCal;
+	$response = array('result' => $Result,
+					  'record'=> $_SESSION['calculatRecord']);
+	echo json_encode($response);
+}
+
+if($operation =="multi"){
+	$Result = multiFunction($FirstNum,$SecondNum);
+	$recordCal = $FirstNum.'*'.$SecondNum.'='.$Result."\r\n";
+	$_SESSION['calculatRecord']=$_SESSION['calculatRecord'].$recordCal;
+	$response = array('result' => $Result,
+					  'record'=> $_SESSION['calculatRecord']);
+	echo json_encode($response);
+}
+
+if($operation =="div"){
+	$Result = divFunction($FirstNum,$SecondNum);
+	$recordCal = $FirstNum.'/'.$SecondNum.'='.$Result."\r\n";
+	$_SESSION['calculatRecord']=$_SESSION['calculatRecord'].$recordCal;
+	write($recordCal);
+	$response = array('result' => $Result,
+					  'record'=> $_SESSION['calculatRecord']);
+	echo json_encode($response);
 }
 
 function addFunction($a,$b){
-	//print_r($a,$b);
 	$result =0;
 	$result = $a + $b;
 	return $result;
 };
 
 function subFunction($a,$b){
+	$result =0;
 	$result = $a - $b;
 	return $result;
 };
 
+function multiFunction($a,$b){
+	$result =0;
+	$result = $a * $b;
+	return $result;
+};
+
+function divFunction($a,$b){
+	$result =0;
+	$result = $a / $b;
+	return $result;
+};
 
 //logger for test from internet
 /*
