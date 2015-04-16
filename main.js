@@ -52,29 +52,31 @@ $(document).ready(function(){
 		if(secondNumVal==0)	
 			$("#errorForSecond").html("Zero cannot be divisor!");
 		//Ajax request to calculate.php		
-		$.callCalculateRequest(operation,firstNumVal,secondNumVal);
+		callCalculateRequest(operation,firstNumVal,secondNumVal);
 	});
 
     
-    $.callCalculateRequest = function(oper,first,second){
+    var callCalculateRequest = function(oper,first,second){
     	$.ajax({
 			type:"POST",
 			url:"calculate.php",
 			data:{operation:oper,firstNum:first,secondNum:second},
 			dataType:"json",
-			success:function(data){
-				$.FunctionCallback(data);
-			}  //notice! cannot directly use $.addFunctionCallback(data); y????
+			success:FunctionCallback
+			// function(data){
+				// $.FunctionCallback(data);
+			// }  //notice! cannot directly use $.FunctionCallback(data); y????
 		});
     };
 
-	$.FunctionCallback = function(response){
+	var FunctionCallback = function(response){
 			alert("hello FunctionCallback!");
 			//alert(response);
 			console.log(response);
 			//set result
 			$("#result").html(response.result);
 			$("#record").html(response.record);
+			//$("button[name=add]").
 
 	};
 });
